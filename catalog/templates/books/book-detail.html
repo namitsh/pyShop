@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{ object.title }}</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{object.title}}</h1>
+        </div>
+        <div class=" col-sm-3">
+            <img src="{{ object.image.url }}" alt="Image" height="350px">
+        </div>
+        <div class="col-sm-9">
+            <p><a href="{{object.author.get_absolute_url}}"><em>{{ object.author.first_name }} {{ object.author.last_name }}</em></a></p>
+            <p>{{ object.summary}}</p>
+            <ul>
+                <li>ISBN : {{object.isbn}}</li>
+                <li>GENRE : {{object.display_genre}}</li>
+                <li>LANGUAGE : {{object.language}}</li>
+            </ul>
+            <div class="container">
+                <h3>Get a Copy</h3>
+                    {% if avail_book %}
+                        {% for item in avail_book %}
+                            <p>Book is available</p>
+                            <p>{{ item.status }}</p>
+                            <form method="POST" action="" ">
+                                {% csrf_token %}
+                                <input type="submit" name="Submit" value="Confirm">
+                            </form>
+                        {% endfor %}
+                    {% else %}
+                        <p>Book is not available</p>
+                    {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

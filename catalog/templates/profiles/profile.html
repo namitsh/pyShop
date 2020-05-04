@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{ request.user.username }}</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{request.user.first_name}} {{request.user.last_name}}</h1>
+        </div>
+        <div class=" col-sm-3">
+
+            <img src="{% if request.user.profile.profile_picture %} {{ request.user.profile.profile_picture.url }} {% else %} # {% endif %}" alt="Image" height="350px">
+        </div>
+        <div class="col-sm-9">
+            <p><strong>E-mail : </strong>{{ request.user.email }}</p>
+
+            <p>{{ request.profile.bio}}</p>
+            <p><strong>Location : </strong>{{ request.profile.location }}</p>
+            <a href="{% url 'edit-profile' %}">Edit Profile</a>
+        </div>
+    </div>
+
+{% endblock %}

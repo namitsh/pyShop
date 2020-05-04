@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>My Books</title>
+{% endblock %}
+
+
+{% block content %}
+    <h1>My BOOKS</h1>
+<br>
+<!--neeche waala if main islie use kr rha hu kyuki humari queryset modified hai-->
+{% if object_list %}
+    <ul>
+    {% for item in object_list %}
+        <li class="{% if item.is_overdue %}text-danger{% endif %}">
+            <a href="{% url 'book-detail' item.book.pk %}" >{{ item.book.title }}</a> : {{ item.due_date}}</li>
+
+    {% endfor %}
+    </ul>
+{% else%}
+<p>NO BOOKS BORROWED</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>READ.ME</h1>
+<p>Welcome to local library, a website developed by <em>Namit Sharda</em>!</p>
+<br>
+<h2>RECORDS</h2>
+<p>The library has the following record counts:</p>
+<ul>
+    <li><strong>Books</strong>: {{ num_books }}</li>
+    <li><strong>Authors</strong>: {{ num_authors }}</li>
+    <li><strong>Copies</strong>: {{ num_instances }}</li>
+    <li><strong>Books Available</strong>: {{ num_instances_available }}</li>
+
+</ul>
+<p>
+    <ul>
+    {% if book_list %}
+        {% for item in book_list %}
+    <li><a href="{% url 'book-detail' item.pk %}"> {{ item.title }}</a></li>
+        {% endfor %}
+    {% endif %}
+    </ul>
+</p>
+<br>
+<br>
+<p>The number of times you have visited {{ num_visits }} {% if num_visits == 1 %} time {% else %} times {% endif %} </p>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{ object.first_name }} {{ object.last_name }}</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ object.first_name }} {{ object.last_name }}</h1>
+        </div>
+        <div class="col-sm-12">
+            <p>{% if object.date_of_birth %}{{ object.date_of_birth}}{% endif %} - {% if object.date_of_death %} {{ object.date_of_death }}{% endif %}</p>
+        <h3>Books</h3>
+        <hr>
+        {% for item in author.book_set.all %}
+            <h4><a href="{% url 'book-detail' item.pk %}">{{ item.title }}</a></h4>
+            <p>{{ item.summary }}</p>
+        <hr>
+        {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}

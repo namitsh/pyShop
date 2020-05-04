@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>All Borrowed Books</title>
+{% endblock %}
+
+
+{% block content %}
+    <h1>My BOOKS</h1>
+<br>
+<!--neeche waala if main islie use kr rha hu kyuki humari queryset modified hai-->
+{% if object_list %}
+    <ul>
+    {% for item in object_list %}
+        <li class="{% if item.is_overdue %}text-danger{% endif %}">
+            <a href="{% url 'book-detail' item.book.pk %}" >{{ item.book.title }}</a> : {{ item.due_date}}
+            {% if user.is_staff %}- {{ item.borrower }}{% endif %}{% if perms.catalog.can_mark_returned %}<a href="{% url 'renew-book-librarian' item.pk %}">  Renew</a>
+            {% endif %}
+        </li>
+
+    {% endfor %}
+    </ul>
+{% else%}
+<p>NO BOOKS BORROWED</p>
+{% endif %}
+{% endblock %}
