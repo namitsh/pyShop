@@ -267,3 +267,17 @@ def signup(request):
         form = SignUpForm()
 
     return render(request, 'registration/signup.html', {'form': form})
+
+
+@login_required()
+def read_pdf(request, pk):
+    book_instance = get_object_or_404(BookInstance, pk=pk)
+    if book_instance.pdf:
+        print('Yes')
+
+    context = {
+        'object': book_instance
+    }
+
+    return render(request, 'book_instance/pdf-reader.html', context)
+

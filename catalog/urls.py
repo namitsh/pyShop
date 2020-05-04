@@ -20,5 +20,6 @@ urlpatterns = [
     path('book/<int:pk>/delete/',views.BookDeleteView.as_view(),name='book-delete'),
     path('edit_profile/', views.update_profile, name='edit-profile'),
     path('profile/<int:pk>', views.ProfileDetailView.as_view(), name='profile'),
-    url(r'^signup/$', views.signup, name='signup')
+    url(r'^signup/$', views.signup, name='signup'),
+    path('read/<uuid:pk>', views.read_pdf, name='read-pdf')
 ]

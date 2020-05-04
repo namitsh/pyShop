@@ -86,6 +86,7 @@ class BookInstance(models.Model):
     imprint = models.CharField(max_length=200)
     due_date = models.DateField(null=True, blank=True)
     borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    pdf = models.FileField(upload_to='documents/', null=True)
 
     # a tuple containing tuples of key-value pairs
 

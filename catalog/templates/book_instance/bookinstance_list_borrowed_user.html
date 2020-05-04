@@ -13,8 +13,7 @@
     <ul>
     {% for item in object_list %}
         <li class="{% if item.is_overdue %}text-danger{% endif %}">
-            <a href="{% url 'book-detail' item.book.pk %}" >{{ item.book.title }}</a> : {{ item.due_date}}</li>
-
+            <a href="{% url 'book-detail' item.book.pk %}" >{{ item.book.title }}</a> : {{ item.due_date}}---<a href="{% url 'read-pdf' item.pk %}">READ</a></li>
     {% endfor %}
     </ul>
 {% else%}

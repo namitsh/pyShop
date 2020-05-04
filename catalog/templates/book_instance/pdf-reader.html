@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>{{object.book.title}}</title>
+{% endblock %}
+
+{% block content %}
+<embed src = "{% if object.pdf %}{{ object.pdf.url }}{% else %}#{% endif %}" width ="100%" height ="600px" type="application/pdf"/>
+
+{% endblock %}
