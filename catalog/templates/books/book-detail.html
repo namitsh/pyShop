@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="fluid-container">
     <div class="row">
         <div class="col-sm-12">
             <h1>{{object.title}}</h1>
         </div>
         <div class=" col-sm-3">
-            <img src="{{ object.image.url }}" alt="Image" height="350px">
+            <img class="mt-2" src="{{ object.image.url }}" alt="Image" height="280px">
         </div>
         <div class="col-sm-9">
             <p><a href="{{object.author.get_absolute_url}}"><em>{{ object.author.first_name }} {{ object.author.last_name }}</em></a></p>
@@ -39,5 +39,5 @@
 
         </div>
     </div>
-
+</div>
 {% endblock %}

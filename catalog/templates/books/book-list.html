@@ -6,8 +6,21 @@
 
 {% block content %}
     <h1>BOOKS</h1>
-<br>
-    {% for item in object_list %}
-        <li><a href="{{ item.get_absolute_url }}" >{{ item.title }}</a></li>
+<div class="row">
+    <div class="container" style="width: 960px;">
+        {% for item in object_list %}
+    <div class="container mt-3">
+  <div class="media border p-3">
+    <img src="{{ item.image.url }}" alt="John Doe" class="mr-3 mt-2" style="width:150px;">
+    <div class="media-body">
+      <h3><a href="{% url 'book-detail' item.id %}">{{item.title}}</a> </h3>
+        <small> <i>By {{ item.author.first_name }} {{ item.author.last_name }}</i></small>
+      <p>{{ item.summary }}</p>
+    </div>
+  </div>
+</div>
     {% endfor %}
+<!--    {% for item in object_list %}-->
+<!--        <li><a href="{{ item.get_absolute_url }}" >{{ item.title }}</a></li>-->
+<!--    {% endfor %}-->
 {% endblock %}

@@ -1,28 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>READ.ME</h1>
-<p>Welcome to local library, a website developed by <em>Namit Sharda</em>!</p>
-<br>
-<h2>RECORDS</h2>
-<p>The library has the following record counts:</p>
-<ul>
-    <li><strong>Books</strong>: {{ num_books }}</li>
-    <li><strong>Authors</strong>: {{ num_authors }}</li>
-    <li><strong>Copies</strong>: {{ num_instances }}</li>
-    <li><strong>Books Available</strong>: {{ num_instances_available }}</li>
+<!--<h2>RECORDS</h2>-->
+<!--<p>The library has the following record counts:</p>-->
+<!--<ul>-->
+<!--    <li><strong>Books</strong>: {{ num_books }}</li>-->
+<!--    <li><strong>Authors</strong>: {{ num_authors }}</li>-->
+<!--    <li><strong>Copies</strong>: {{ num_instances }}</li>-->
+<!--    <li><strong>Books Available</strong>: {{ num_instances_available }}</li>-->
 
-</ul>
-<p>
-    <ul>
+<!--</ul>-->
+
+<div class="row">
+    <div class="container" style="width: 960px;">
     {% if book_list %}
         {% for item in book_list %}
-    <li><a href="{% url 'book-detail' item.pk %}"> {{ item.title }}</a></li>
-        {% endfor %}
+    <div class="container mt-3">
+  <div class="media border p-3">
+    <img src="{{ item.image.url }}" alt="John Doe" class="mr-3 mt-2" style="width:150px;">
+    <div class="media-body">
+      <h3><a href="{% url 'book-detail' item.id %}">{{item.title}}</a> </h3>
+        <small> <i>By {{ item.author.first_name }} {{ item.author.last_name }}</i></small>
+      <p>{{ item.summary }}</p>
+    </div>
+  </div>
+</div>
+    {% endfor %}
     {% endif %}
-    </ul>
-</p>
-<br>
-<br>
-<p>The number of times you have visited {{ num_visits }} {% if num_visits == 1 %} time {% else %} times {% endif %} </p>
+</div>
+    </div>
+
+<!--<p>The number of times you have visited {{ num_visits }} {% if num_visits == 1 %} time {% else %} times {% endif %} </p>-->
 {% endblock %}

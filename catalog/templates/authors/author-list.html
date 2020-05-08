@@ -5,9 +5,17 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Authors</h1>
-<br>
-    {% for item in object_list %}
-        <li><a href="{{ item.get_absolute_url }}" >{{ item.first_name }} {{ item.last_name }}</a></li>
+    <h1>AUTHORS</h1>
+<div class="row">
+    <div class="container" style="width: 960px;">
+        {% for item in object_list %}
+    <div class="container mt-3">
+  <div class="media border p-3">
+    <img src="#" alt="{{item.first_name}} {{ item.last_name }}" class="mr-3 mt-2" style="width:150px;">
+    <div class="media-body">
+      <h3><a href="{% url 'author-detail' item.id %}">{{item.first_name}} {{ item.last_name }}</a> </h3>
+    </div>
+  </div>
+</div>
     {% endfor %}
 {% endblock %}
